@@ -36,8 +36,18 @@ nav a:hover, nav .active{
 
 
 .container{
-    width: 100%;
+    /* width: 100%; */
+    /* padding: 0 100px; */
+    width: 800px;
+    margin: auto;
     height: 300px;
+    /* border: 10px solid black; */
+}
+
+form{
+    width: 500px;
+    background-color: #ccc;
+    margin: auto;
 }
 
 footer{

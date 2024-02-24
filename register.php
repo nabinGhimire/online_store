@@ -1,8 +1,48 @@
 <?php 
+    $errors = Array();
 
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_GET);
+// echo "</pre>";
+
+// if(isset($_GET['register'])){
+//     echo "Form Submitted";
+// }
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        echo "GET Request";
+    }
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        echo "Form Submitted<br>";
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $gender = $_POST['gender'];
+        $country = $_POST['country'];
+        $dob = $_POST['dob'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        // Name Validation
+        $name = trim($name);
+        if(!strlen($name) > 0){
+            $errors['name_error'] = "Name is required";
+        }else{
+            $pattern = "/^[a-zA-Z ]+$/";
+            if(!preg_match($pattern,$name)){
+                $errors['name_error'] = "Name can't contain digits and special characters";
+            }
+        }
+
+
+   
+        echo $name." ".$email." ".$phone." ".$gender." ".$country." ".$dob." ".$password." ".$confirm_password;
+        
+        print_r($errors);
+    }
 
     $title = "Register Page";
     $active = "register";
@@ -12,7 +52,7 @@ echo "</pre>";
 ?>
 
     <h1 style="text-align:center;">Register New Account</h1>
-    <form style="width: 500px; background-color: #ccc; padding: 10px; margin: auto;">
+    <form style="width: 500px; background-color: #ccc; padding: 10px; margin: auto;" method="POST">
         Name : 
         <input type="text" name="name" id="name"><br>
         Email: <input type="text" name="email" id="email"><br>
